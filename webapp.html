@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Travel Suggestions</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f8ff;
+        }
+        h1 {
+            color: #0073e6;
+        }
+        select, button {
+            font-size: 16px;
+            padding: 10px;
+            margin: 10px;
+        }
+        .places {
+            margin-top: 20px;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Explore the World</h1>
+    <p id="prompt">Select a continent to see amazing places to visit:</p>
+
+    <!-- Dropdown for selecting a continent -->
+    <select id="continentSelect">
+        <option value="" disabled selected>Choose a continent</option>
+        <option value="Africa">Africa</option>
+        <option value="Asia">Asia</option>
+        <option value="Europe">Europe</option>
+        <option value="North America">North America</option>
+        <option value="South America">South America</option>
+        <option value="Oceania">Oceania</option>
+        <option value="Antarctica">Antarctica</option>
+    </select>
+    <br>
+    <button id="showPlacesButton" onclick="showPlaces()">Show Places</button>
+
+    <!-- Div to display the list of places -->
+    <div id="placesContainer" class="places"></div>
+
+    <!-- Try Again Button (Initially Hidden) -->
+    <button id="tryAgainButton" style="display: none;" onclick="resetApp()">Try Again</button>
+
+    <script>
+        function showPlaces() {
+            const continent = document.getElementById("continentSelect").value;
+            const placesContainer = document.getElementById("placesContainer");
+
+            // List of places to visit
+            const places = {
+                "Africa": [
+                    "Victoria Falls, Zambia/Zimbabwe",
+                    "Great Pyramid of Giza, Egypt (One of the Seven Wonders)",
+                    "Mount Kilimanjaro, Tanzania"
+                ],
+                "Asia": [
+                    "Great Wall of China, China (One of the Seven Wonders)",
+                    "Taj Mahal, India",
+                    "Petra, Jordan (One of the Seven Wonders)"
+                ],
+                "Europe": [
+                    "Colosseum, Italy (One of the Seven Wonders)",
+                    "Eiffel Tower, France",
+                    "Santorini, Greece"
+                ],
+                "North America": [
+                    "Grand Canyon, USA",
+                    "Chichén Itzá, Mexico (One of the Seven Wonders)",
+                    "Banff National Park, Canada"
+                ],
+                "South America": [
+                    "Machu Picchu, Peru (One of the Seven Wonders)",
+                    "Christ the Redeemer, Brazil (One of the Seven Wonders)",
+                    "Iguazu Falls, Brazil/Argentina"
+                ],
+                "Oceania": [
+                    "Great Barrier Reef, Australia",
+                    "Milford Sound, New Zealand",
+                    "Uluru (Ayers Rock), Australia"
+                ],
+                "Antarctica": [
+                    "Mount Erebus",
+                    "Deception Island",
+                    "Lemaire Channel"
+                ]
+            };
+
+            // Clear the container
+            placesContainer.innerHTML = "";
+
+            if (continent && places[continent]) {
+                const list = places[continent]
+                    .map(place => `<li>${place}</li>`)
+                    .join("");
+                placesContainer.innerHTML = `
+                    <h3>Places to Visit in ${continent}:</h3>
+                    <ul>${list}</ul>
+                `;
+
+                // Hide the Show Places button and display the Try Again button
+                document.getElementById("showPlacesButton").style.display = "none";
+                document.getElementById("tryAgainButton").style.display = "inline-block";
+            } else {
+                placesContainer.innerHTML = "<p>Please select a continent.</p>";
+            }
+        }
+
+        function resetApp() {
+            // Reset the dropdown and clear places
+            document.getElementById("continentSelect").selectedIndex = 0;
+            document.getElementById("placesContainer").innerHTML = "";
+            
+            // Reset buttons and prompt
+            document.getElementById("showPlacesButton").style.display = "inline-block";
+            document.getElementById("tryAgainButton").style.display = "none";
+        }
+    </script>
+</body>
+</html>
