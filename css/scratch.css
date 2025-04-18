@@ -10,6 +10,10 @@ ul {
     list-style-position: inside; /* Makes bullets align with the text */
     text-align: center;          /* Centers both bullets and text */
 }
+ol{
+    list-style-position: inside; /* Makes bullets align with the text */
+    text-align: center;          /* Centers both bullets and text */
+}
 body{
     font-weight: 500;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
